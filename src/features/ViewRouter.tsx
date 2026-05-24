@@ -1,6 +1,8 @@
 import { useAppStore } from '../core/stores/app.store';
+
 import { DashboardView } from './dashboard/DashboardView';
 import { NotesView } from './notes/NotesView';
+
 import { AIChatView } from './ai-chat/AIChatView';
 import { GraphView } from './graph/GraphView';
 import { FlashcardsView } from './flashcards/FlashcardsView';
@@ -12,6 +14,7 @@ import { MocView } from './moc/MocView';
 import { PdfView } from './pdf/PdfView';
 import { SyncView } from './sync/SyncView';
 
+import PDFUploader from './pdf/components/PDFUploader';
 export function ViewRouter() {
   const { currentView } = useAppStore();
 
@@ -29,7 +32,13 @@ export function ViewRouter() {
   }
 
   switch (currentView) {
-    case 'dashboard': return <DashboardView />;
+    case 'dashboard':
+  return (
+    <>
+      <PDFUploader />
+      <DashboardView />
+    </>
+  );
     case 'notes': return <NotesView />;
     case 'daily': return <DailyView />;
     case 'moc': return <MocView />;

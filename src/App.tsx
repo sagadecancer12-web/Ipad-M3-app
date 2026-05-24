@@ -1,13 +1,20 @@
 import './styles/globals.css';
+
 import { Sidebar } from './components/layout/Sidebar';
 import { TopBar } from './components/layout/TopBar';
 import { TabBar } from './components/layout/TabBar';
+
 import { CommandPalette } from './components/shared/CommandPalette';
+
 import { ViewRouter } from './features/ViewRouter';
+
+import PDFUploader from './features/pdf/components/PDFUploader';
 
 export default function App() {
   return (
     <>
+      <PDFUploader />
+
       <div className="app-shell">
         {/* Sidebar */}
         <Sidebar />
