@@ -1,0 +1,58 @@
+import type { Prompt } from '../../types';
+
+export const PROMPTS: Prompt[] = [
+  {
+    id: 1,
+    title: 'Generador de nota atómica',
+    category: 'PKM',
+    template: 'Dado el siguiente fragmento de texto, extrae la idea central y conviértela en una nota atómica en formato Zettelkasten. Incluye frontmatter YAML.\n\nTexto: {{texto}}',
+    variables: ['texto'],
+    model: 'claude-sonnet-4-6',
+    tags: ['zettelkasten', 'pkm'],
+  },
+  {
+    id: 2,
+    title: 'Análisis RAG de notas',
+    category: 'IA',
+    template: 'Analiza las siguientes notas recuperadas y sintetiza los patrones clave relacionados con {{consulta}}:\n\n{{contexto}}',
+    variables: ['consulta', 'contexto'],
+    model: 'gpt-4o',
+    tags: ['rag', 'análisis'],
+  },
+  {
+    id: 3,
+    title: 'Flashcards desde nota',
+    category: 'Estudio',
+    template: 'Genera 5 flashcards en formato Q&A basadas en la siguiente nota. Sigue el principio de mínima información de Wozniak.\n\nNota: {{contenido}}',
+    variables: ['contenido'],
+    model: 'claude-sonnet-4-6',
+    tags: ['flashcards', 'sm2'],
+  },
+  {
+    id: 4,
+    title: 'Outline de discurso',
+    category: 'Oratoria',
+    template: 'Crea un outline de discurso usando los cinco cánones ciceronianos para el tema: {{tema}}. Duración objetivo: {{duracion}} minutos.',
+    variables: ['tema', 'duracion'],
+    model: 'claude-sonnet-4-6',
+    tags: ['oratoria', 'cicerón'],
+  },
+  {
+    id: 5,
+    title: 'Extractor de wikilinks',
+    category: 'PKM',
+    template: 'Analiza la siguiente nota e identifica conceptos que deberían ser wikilinks hacia otras notas del vault. Lista los candidatos con justificación.\n\n{{nota}}',
+    variables: ['nota'],
+    model: 'gpt-4o',
+    tags: ['wikilinks', 'pkm'],
+  },
+  {
+    id: 6,
+    title: 'Resumen para EGEL',
+    category: 'EGEL',
+    template: 'Resume los conceptos clave del siguiente material para preparación del EGEL, área {{area}}. Enfócate en las preguntas tipo examen.\n\n{{material}}',
+    variables: ['area', 'material'],
+    model: 'claude-sonnet-4-6',
+    tags: ['egel', 'estudio'],
+  },
+];
