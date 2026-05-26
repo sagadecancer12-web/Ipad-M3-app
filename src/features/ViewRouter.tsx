@@ -41,6 +41,7 @@ export function ViewRouter() {
         return (
           <>
       
+      <PDFUploader />
             <DashboardView />
           </>
         );
