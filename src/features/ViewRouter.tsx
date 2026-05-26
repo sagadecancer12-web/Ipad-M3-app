@@ -73,6 +73,7 @@ export function ViewRouter() {
       case 'sync':
         return <SyncView />;
     
-      default:
-        return <DashboardView />;
-    }
+        default:
+         ; return <DashboardView />;
+          }
+        }
