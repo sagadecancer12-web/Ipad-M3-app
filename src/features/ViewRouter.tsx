@@ -35,25 +35,45 @@ export function ViewRouter() {
     );
   }
 
-  switch (currentView) {
-    case 'dashboard':
-  return (
-    <div style={{ color: 'white', padding: '40px' }}>
-      DASHBOARD FUNCIONANDO
-    </div>
-  );
-  
-    case 'notes': return <NotesView />;
-    case 'daily': return <DailyView />;
-    case 'moc': return <MocView />;
-    case 'search': return <SearchView />;
-    case 'ai': return <AIChatView />;
-    case 'graph': return <GraphView />;
-    case 'flash': return <FlashcardsView />;
-    case 'egel': return <EgelView />;
-    case 'pdf': return <PdfView />;
-    case 'prompts': return <PromptsView />;
-    case 'sync': return <SyncView />;
-    default: return <DashboardView />;
-  }
-}
+  ch (currentView) {
+    switch (currentView) {
+
+      case 'dashboard':
+        return <DashboardView />;
+    
+      case 'notes':
+        return <NotesView />;
+    
+      case 'daily':
+        return <DailyView />;
+    
+      case 'moc':
+        return <MocView />;
+    
+      case 'search':
+        return <SearchView />;
+    
+      case 'ai':
+        return <AIChatView />;
+    
+      case 'graph':
+        return <GraphView />;
+    
+      case 'flash':
+        return <FlashcardsView />;
+    
+      case 'egel':
+        return <EgelView />;
+    
+      case 'pdf':
+        return <PdfView />;
+    
+      case 'prompts':
+        return <PromptsView />;
+    
+      case 'sync':
+        return <SyncView />;
+    
+      default:
+        return <DashboardView />;
+    }
