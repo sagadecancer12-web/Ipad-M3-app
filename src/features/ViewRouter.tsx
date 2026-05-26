@@ -38,7 +38,15 @@ export function ViewRouter() {
     switch (currentView) {
 
       case 'dashboard':
-        return <DashboardView />;
+        return (
+          <>
+            <PDFUploader />
+      
+            <PDFLibrary />
+      
+            <DashboardView />
+          </>
+        );
     
       case 'notes':
         return <NotesView />;
