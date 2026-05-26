@@ -35,7 +35,6 @@ export function ViewRouter() {
     );
   }
 
-  ch (currentView) {
     switch (currentView) {
 
       case 'dashboard':
