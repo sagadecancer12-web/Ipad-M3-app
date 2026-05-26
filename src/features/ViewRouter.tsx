@@ -42,12 +42,7 @@ export function ViewRouter() {
       DASHBOARD FUNCIONANDO
     </div>
   );
-  case 'dashboard':
-  return (
-    <div style={{ color: 'white', padding: '40px' }}>
-      DASHBOARD FUNCIONANDO
-    </div>
-  );
+  
     case 'notes': return <NotesView />;
     case 'daily': return <DailyView />;
     case 'moc': return <MocView />;
