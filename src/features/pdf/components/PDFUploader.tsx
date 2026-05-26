@@ -1,9 +1,30 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
+import { db } from "@/database/db";
+
+import { extractTextFromPDF } from "../services/extractText";
 export default function PDFUploader() {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log("PDFs:", acceptedFiles);
+  const [uploaded, setUploaded] = useState("");
+
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    const file = acceptedFiles[0];
+
+    if (!file) return;
+
+    const extractedText = await extractTextFromPDF(file);
+
+console.log(extractedText);
+
+    await db.pdfs.add({
+      name: file.name,
+      file,
+      createdAt: new Date().toISOString(),
+    });
+
+    console.log("PDF guardado:", file.name);
+
+    setUploaded(file.name);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -16,14 +37,37 @@ export default function PDFUploader() {
   return (
     <div
       {...getRootProps()}
-      className="border-2 border-dashed border-gray-500 rounded-xl p-10 text-center cursor-pointer"
+      className="
+        border
+        border-dashed
+        border-neutral-700
+        rounded-lg
+        p-4
+        text-center
+        cursor-pointer
+        bg-neutral-900
+        hover:border-amber-500
+        transition
+        max-w-md
+        mb-4
+      "
     >
       <input {...getInputProps()} />
 
       {isDragActive ? (
-        <p>Suelta el PDF aquí...</p>
+        <p className="text-sm text-amber-400">
+          Suelta el PDF aquí...
+        </p>
       ) : (
-        <p>Arrastra o selecciona un PDF</p>
+        <p className="text-sm text-neutral-400">
+          + Subir PDF
+        </p>
+      )}
+
+      {uploaded && (
+        <p className="text-xs text-emerald-400 mt-2">
+          PDF guardado: {uploaded}
+        </p>
       )}
     </div>
   );

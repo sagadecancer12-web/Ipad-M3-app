@@ -14,7 +14,11 @@ import { MocView } from './moc/MocView';
 import { PdfView } from './pdf/PdfView';
 import { SyncView } from './sync/SyncView';
 
-import PDFUploader from './pdf/components/PDFUploader';
+import PDFUploader from '@/features/pdf/components/PDFUploader';
+import PDFLibrary from '@/features/pdf/components/PDFLibrary';
+import QuestionCard from '@/features/simulator/components/QuestionCard';
+
+
 export function ViewRouter() {
   const { currentView } = useAppStore();
 
@@ -35,9 +39,12 @@ export function ViewRouter() {
     case 'dashboard':
   return (
     <>
-      <PDFUploader />
-      <DashboardView />
-    </>
+  <PDFUploader />
+
+  <PDFLibrary />
+
+  <DashboardView />
+</>
   );
     case 'notes': return <NotesView />;
     case 'daily': return <DailyView />;
