@@ -42,6 +42,9 @@ export function ViewRouter() {
           <>
       
       <PDFUploader />
+
+      <PDFLibrary />
+      
             <DashboardView />
           </>
         );
