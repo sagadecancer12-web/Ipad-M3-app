@@ -12,20 +12,12 @@ export default function PDFUploader() {
 
     if (!file) return;
 
-    const extractedText = await extractTextFromPDF(file);
-
-console.log(extractedText);
-
     await db.pdfs.add({
       name: file.name,
       file,
+      text: "",
       createdAt: new Date().toISOString(),
     });
-
-    console.log("PDF guardado:", file.name);
-
-    setUploaded(file.name);
-  }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
