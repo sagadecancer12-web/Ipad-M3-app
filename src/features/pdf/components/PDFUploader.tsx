@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 
 import { db } from "@/database/db";
 
-import { extractTextFromPDF } from "../services/extractText";
 export default function PDFUploader() {
   const [uploaded, setUploaded] = useState("");
 
@@ -18,6 +17,11 @@ export default function PDFUploader() {
       text: "",
       createdAt: new Date().toISOString(),
     });
+
+    console.log("PDF guardado:", file.name);
+
+    setUploaded(file.name);
+  }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
