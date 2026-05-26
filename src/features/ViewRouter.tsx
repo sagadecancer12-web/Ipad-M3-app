@@ -40,9 +40,6 @@ export function ViewRouter() {
       case 'dashboard':
         return (
           <>
-            <PDFUploader />
-      
-            <PDFLibrary />
       
             <DashboardView />
           </>
