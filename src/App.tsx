@@ -13,7 +13,7 @@ import PDFUploader from './features/pdf/components/PDFUploader';
 export default function App() {
   return (
     <>
-      <PDFUploader />
+      
 
       <div className="app-shell">
         {/* Sidebar */}
