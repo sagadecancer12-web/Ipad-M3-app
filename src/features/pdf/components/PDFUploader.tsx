@@ -1,5 +1,4 @@
-import { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import { useState } from "react";
 
 import { db } from "@/database/db";
 
@@ -8,9 +7,11 @@ import { extractTextFromPDF } from "../services/extractText";
 export default function PDFUploader() {
   const [uploaded, setUploaded] = useState("");
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+  async function handleFileChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
     try {
-      const file = acceptedFiles[0];
+      const file = event.target.files?.[0];
 
       if (!file) return;
 
@@ -34,18 +35,10 @@ export default function PDFUploader() {
     } catch (error) {
       console.error("ERROR PDF:", error);
     }
-  }, []);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: {
-      "application/pdf": [".pdf"],
-    },
-    onDrop,
-  });
+  }
 
   return (
     <div
-      {...getRootProps()}
       className="
         border
         border-dashed
@@ -53,25 +46,23 @@ export default function PDFUploader() {
         rounded-lg
         p-4
         text-center
-        cursor-pointer
         bg-neutral-900
-        hover:border-amber-500
-        transition
         max-w-md
         mb-4
       "
     >
-      <input {...getInputProps()} />
-
-      {isDragActive ? (
-        <p className="text-sm text-amber-400">
-          Suelta el PDF aquí...
-        </p>
-      ) : (
-        <p className="text-sm text-neutral-400">
+      <label className="cursor-pointer">
+        <span className="text-sm text-neutral-400">
           + Subir PDF
-        </p>
-      )}
+        </span>
+
+        <input
+          type="file"
+          accept=".pdf"
+          className="hidden"
+          onChange={handleFileChange}
+        />
+      </label>
 
       {uploaded && (
         <p className="text-xs text-emerald-400 mt-2">
