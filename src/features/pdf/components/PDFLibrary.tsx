@@ -43,7 +43,27 @@ export default function PDFLibrary() {
             📄 {pdf.name}
           </p>
           <p className="text-[10px] text-emerald-400 mt-1">
-  {pdf.text?.slice(0, 300)}
+          <div className="mt-2">
+  <p className="text-[10px] text-emerald-400">
+    {pdf.text?.slice(0, 200)}
+  </p>
+
+  <button
+    className="
+      mt-3
+      text-xs
+      px-2
+      py-1
+      rounded
+      bg-amber-500
+      text-black
+      hover:bg-amber-400
+      transition
+    "
+  >
+    Abrir PDF
+  </button>
+</div>
 </p>
           <p className="text-xs text-neutral-500 mt-1">
             {pdf.createdAt}
