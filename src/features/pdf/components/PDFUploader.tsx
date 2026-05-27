@@ -17,14 +17,14 @@ export default function PDFUploader() {
 
       console.log("PDF recibido:", file.name);
 
-      const extractedText = await extractTextFromPDF(file);
+      // const extractedText = await extractTextFromPDF(file);
 
       console.log("TEXTO EXTRAIDO:", extractedText);
 
       await db.pdfs.add({
         name: file.name,
         file,
-        text: extractedText,
+        text: "TEST PDF",
         createdAt: new Date().toISOString(),
       });
 
