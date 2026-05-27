@@ -11,12 +11,16 @@ export default function PDFUploader() {
 
     if (!file) return;
 
-    await db.pdfs.add({
-      name: file.name,
-      file,
-      text: "",
-      createdAt: new Date().toISOString(),
-    });
+    const extractedText = await extractTextFromPDF(file);
+
+console.log(extractedText);
+
+await db.pdfs.add({
+  name: file.name,
+  file,
+  text: extractedText,
+  createdAt: new Date().toISOString(),
+});
 
     console.log("PDF guardado:", file.name);
 
