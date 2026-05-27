@@ -1,12 +1,28 @@
+import { useState } from "react";
+
+import PDFTextPreview from "./PDFTextPreview";
+
 import { useLiveQuery } from "dexie-react-hooks";
 
 import { db } from "@/database/db";
 
 export default function PDFLibrary() {
+
   const pdfs = useLiveQuery(() => db.pdfs.toArray());
 
+  const [selectedPDF, setSelectedPDF] = useState<any>(null);
+
   return (
-    <div
+    <div>
+
+{selectedPDF && (
+  <div className="mt-4">
+    <PDFTextPreview
+      title={selectedPDF.name}
+      text={selectedPDF.text}
+    />
+  </div>
+)}
       className="
         border
         border-neutral-800
@@ -61,10 +77,22 @@ export default function PDFLibrary() {
       transition
     "
   >
-    Abrir PDF
-  </button>
-</div>
-</p>
+   <button
+  onClick={() => setSelectedPDF(pdf)}
+  className="
+    mt-3
+    text-xs
+    px-2
+    py-1
+    rounded
+    bg-amber-500
+    text-black
+    hover:bg-amber-400
+    transition
+  "
+>
+  Abrir PDF
+</button>
           <p className="text-xs text-neutral-500 mt-1">
             {pdf.createdAt}
           </p>
