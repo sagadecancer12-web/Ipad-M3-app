@@ -42,7 +42,9 @@ export default function PDFLibrary() {
           <p className="text-sm text-white">
             📄 {pdf.name}
           </p>
-
+          <p className="text-[10px] text-emerald-400 mt-1">
+  {pdf.text?.slice(0, 300)}
+</p>
           <p className="text-xs text-neutral-500 mt-1">
             {pdf.createdAt}
           </p>
