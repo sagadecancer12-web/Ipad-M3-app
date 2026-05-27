@@ -3,45 +3,37 @@ import { useDropzone } from "react-dropzone";
 
 import { db } from "@/database/db";
 
+import { extractTextFromPDF } from "../services/extractText";
+
 export default function PDFUploader() {
   const [uploaded, setUploaded] = useState("");
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     try {
       const file = acceptedFiles[0];
-  
+
       if (!file) return;
-  
+
       console.log("PDF recibido:", file.name);
-  
+
       const extractedText = await extractTextFromPDF(file);
-  
+
       console.log("TEXTO EXTRAIDO:", extractedText);
-  
+
       await db.pdfs.add({
         name: file.name,
         file,
         text: extractedText,
         createdAt: new Date().toISOString(),
       });
-  
+
       console.log("PDF guardado:", file.name);
-  
+
       setUploaded(file.name);
-  
+
     } catch (error) {
       console.error("ERROR PDF:", error);
     }
-  }, []);
-  name: file.name,
-  file,
-  text: extractedText,
-  createdAt: new Date().toISOString(),
-});
-
-    console.log("PDF guardado:", file.name);
-
-    setUploaded(file.name);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
